@@ -1,9 +1,9 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const memberSchema = new mongoose.Schema({
     name: { type: String, require: true },
     surname: { type: String, require: true },
-    sex: { type: CharacterData, require: true },
+    sex: { type: String, require: true },
     status: { type: String, require: true },
     phone: { type: String}
 })

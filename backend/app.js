@@ -1,26 +1,18 @@
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import databaseConnect from './database.connect.js';
+import router from './routes/router.js';
 
+dotenv.config();
 const app = express();
 const port = 3000;
 
-app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-    res.send("Welcome to REDSUNS MC Community!!");
-});
+app.use(router);
 
-app.get("/api", (req, res) => {
-    res.json({ message: "connected with Express succesful!"});
-});
-
-app.post("/api/add-member", (req, res) => {
-    const newMember = req.body.memberName;
-    console.log("recieved ne data:", newMember);
-
-    res.json({ message: `saved ${newMember} already!` })
-})
+databaseConnect();
 
 app.listen(port, () => {
     console.log("Listening in port " + port);
